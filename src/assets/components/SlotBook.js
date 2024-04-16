@@ -33,7 +33,7 @@ export default function SlotBook() {
         navigate('/paynow',{state:totalPrice});
       }
       else{
-        alert("plase select any slot")
+        alert("please select any slot")
       }
       };
 
