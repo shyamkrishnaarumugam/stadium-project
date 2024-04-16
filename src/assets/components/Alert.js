@@ -7,7 +7,10 @@ const Alert = (props) => {
         <div>
            
             <NavItems/>
-            
+            <div className="background">
+                
+                <h1>Karthik</h1>
+            </div>
             <Footer/>
         </div>
             )

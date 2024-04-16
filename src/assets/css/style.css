@@ -7,6 +7,13 @@
   margin: 0;
 }
 
+.background{
+    background-color: #1f1209;
+    color: white;
+    background-size: cover;
+    
+}
+
 .mainLoginInput::-webkit-input-placeholder { 
 font-family: FontAwesome;
 font-weight: normal;
