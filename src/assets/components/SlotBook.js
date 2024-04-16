@@ -90,7 +90,7 @@ export default function SlotBook() {
               <div>
               <h4>Select the Date:-</h4>
               
-              <input className="mb-4" type="date" min={currentDate} value={date} onChange={(e) => setDate(e.target.value)} />
+              <input className=" date-input mb-4" type="date" min={currentDate} value={date} onChange={(e) => setDate(e.target.value)} />
               </div>
               
               <h4>Select the Slot:-</h4>
