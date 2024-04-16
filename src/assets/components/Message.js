@@ -15,8 +15,9 @@ const Message = () => {
             <div className="dark-mode">
                 
                 <img className="whatsappPic mx-5" src={require("../images/conversation.png")}/>
-                <div>
+                <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
                     <button onClick={()=>buttonClicked()}  style={{backgroundColor:"black",border:"none"}}><img className="Whatpic mx-5" src={require("../images/whatsapp.png")}/></button>
+                    <p>Click for whatsapp</p>
                 </div>
 
 
