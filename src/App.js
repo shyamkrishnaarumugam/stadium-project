@@ -14,6 +14,7 @@ import SlotBook from './assets/components/SlotBook';
 import Pay from './assets/components/Pay';
 import PayNow from './assets/components/PayNow';
 import About from './assets/components/About';
+import Message from "./assets/components/Message";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path='/pay' element={<Pay />} />
       <Route path='/paynow' element={<PayNow />} />
       <Route path='/about' element={<About />} />
+      <Route path ="/message" element={<Message />} />
     </Routes>
     </BrowserRouter>
     </>

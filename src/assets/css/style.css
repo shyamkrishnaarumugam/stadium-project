@@ -7,6 +7,13 @@
   margin: 0;
 }
 
+.background{
+    background-color: #1f1209;
+    color: white;
+    background-size: cover;
+    
+}
+
 .mainLoginInput::-webkit-input-placeholder { 
 font-family: FontAwesome;
 font-weight: normal;
@@ -126,6 +133,23 @@ color: hsl(9, 40%, 60%);
     position: relative;
     
 }
+
+.whatsappPic{
+    height: 300px;
+    width:300px;
+    
+
+}
+.Whatpic{
+    height:100px;
+    width:100px;
+    border-radius: 50%; 
+}
+.Whatpic:hover{
+   border: 3px solid rgb(255, 255, 255);
+}
+
+
 .login-page{
     background-color: white;
     color: #00000000;
@@ -133,6 +157,15 @@ color: hsl(9, 40%, 60%);
 .dark-mode{
     background-color: black;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.dark-mode-text{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
 }
 .pay-card{
     color: rgb(198, 0, 0);
