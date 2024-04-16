@@ -15,6 +15,7 @@ import Pay from './assets/components/Pay';
 import PayNow from './assets/components/PayNow';
 import About from './assets/components/About';
 import Alert from "./assets/components/Alert";
+import Message from "./assets/components/Message";
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
       <Route path='/pay' element={<Pay />} />
       <Route path='/paynow' element={<PayNow />} />
       <Route path='/about' element={<About />} />
-      <Route path='Alert' element={<Alert />} />
+      <Route path='/alert' element={<Alert />} />
+      <Route path ="/message" element={<Message />} />
     </Routes>
     </BrowserRouter>
     </>

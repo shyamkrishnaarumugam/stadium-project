@@ -1,16 +1,20 @@
 import {React} from "react";
 import Footer from "./Footer";
 import NavItems from "./NavItems";
+import { Container } from "react-bootstrap";
 
-const Alert = (props) => {
+const Alert = () => {
     return (
         <div>
            
             <NavItems/>
-            <div className="background">
-                
-                <h1>Karthik</h1>
-            </div>
+            <Container className="dark-mode">
+                <table>
+                    <tr>
+                        <td>Alert</td>
+                    </tr>
+                </table>
+            </Container>
             <Footer/>
         </div>
             )
