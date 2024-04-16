@@ -133,6 +133,36 @@ color: hsl(9, 40%, 60%);
     position: relative;
     
 }
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .checkbox-input {
+    display: none; /* Hide the actual checkbox */
+  }
+  
+  .checkbox-label {
+    margin-left: 8px;
+    height: 30px;
+    width: 100px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .checkbox-input:checked + .checkbox-label {
+    background-color: green; /* Change background color when checkbox is checked */
+  }
+  
+  .checkbox-input:not(:checked) + .checkbox-label {
+    background-color: red; /* Change background color when checkbox is unchecked */
+  }
+  
+
 
 .whatsappPic{
     height: 300px;

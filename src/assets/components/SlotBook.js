@@ -9,12 +9,12 @@ export default function SlotBook() {
     const navigate = useNavigate();
     const [isChecked,setIsChecked] = useState({});
     const [date , setDate]= useState('');
-    const [totalPrice,setTotalPrise] = useState(0);
-    const [currentTime,setCurrentTime]=useState(new Date().getTime())
+    const [totalPrice,setTotalPrice] = useState(0);
+    const [currentHour,setCurrentHour]=useState(new Date().getHours())
 
   useEffect(()=>{
     const interval = setInterval(()=>{
-      setCurrentTime(new Date().getTime());
+      setCurrentHour(new Date().getHours());
     },1000*60)
     return ()=>clearInterval(interval);
   },[])
@@ -39,28 +39,40 @@ export default function SlotBook() {
 
        
 
-      const onClickHandle = (e) => {
-        const storingValue = parseInt(e.target.value);
-        const isChecked = e.target.checked;
-        // Get the selected time from the input value (assuming the value is in milliseconds)
-        const selectedTime = storingValue;
-    
-        // Check if the selected time is in the future or the current time
-        if (selectedTime >=currentTime) {
-          setIsChecked((prev)=>({...prev,[storingValue]: isChecked}));
-          setTotalPrise((prev)=>prev + (isChecked?600:-600));
-    
-          if (isChecked) {
-            setIsChecked((oldValue) => oldValue + storingValue);
-          } else {
-            setIsChecked((oldValue) => oldValue - storingValue);
+      const onClickHandle = (slotValue) => {
+          setIsChecked((prev)=>({...prev,[slotValue]:!prev[slotValue]}));
+          setTotalPrice((prev)=>(prev+(isChecked[slotValue] ? -600 : 600)));
+        };
+
+       
+        const renderSlots = () => {
+          const slots = [];
+          for (let i = currentHour; i < 24; i++) {
+            const slotValue = i;
+            const slotMeridian = i < 12 ? "am":"pm";
+            const slotLabel = `${i} - ${i + 1} ${slotMeridian}`;
+            slots.push(
+              <div key={slotValue} className="checkbox-container">
+                <input
+                  className="checkbox-input"
+                  type="checkbox"
+                  id={`slot-${slotValue}`}
+                  checked={isChecked[slotValue]}
+                  onChange={() => onClickHandle(slotValue)}
+                  disabled={slotValue < currentHour}
+                />
+                <label className="checkbox-label" htmlFor={`slot-${slotValue}`}>
+                  {slotLabel}
+                </label>
+              </div>
+            );
           }
-        } else {
-          // If the selected time is in the past, prevent selection
-          e.target.checked = false;
-          alert("You can only select current or future times.");
-        }
-      };
+          return slots;
+        };
+        
+      
+
+
 
   return (
     <>
@@ -91,115 +103,14 @@ export default function SlotBook() {
                     
 
                     
-                    <input type="checkbox" className="btn-check" id="btncheck1" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck1">12am-1am</label>
+                    {renderSlots()}
 
-                    <input type="checkbox" className="btn-check" id="btncheck2" autocomplete="off"  value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck2">1am-2am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck3" autocomplete="off"  value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck3">2am-3am</label>
+                    
                     
                 </div>
-                <div className="btn-group w-100  my-3" role="group" aria-label="Basic checkbox toggle button group">
-
-                    <input type="checkbox" className="btn-check" id="btncheck4" autocomplete="off"  value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck4">3am-4am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck5" autocomplete="off"  value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck5">4am-5am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck6" autocomplete="off"  value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck6">5am-6am</label>
-                </div>
+                
                 </Col>
-                <Col md={"6"} sm={"12"}>
-                <h4 className="text-center">Morning</h4>
-                <div className="btn-group w-100 h-25" role="group" aria-label="Basic checkbox toggle button group">
-                    
-                <input type="checkbox" className="btn-check" id="btncheck7" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck7">6am-7am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck8" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck8">7am-8am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck9" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck9">8am-9am</label>
-                    
-                </div>
-                <div className="btn-group w-100 h-25 my-3" role="group" aria-label="Basic checkbox toggle button group">
-                <input type="checkbox" className="btn-check" id="btncheck10" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck10">9am-10am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck11" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck11">10am-11am</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck12" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck12">11am-12pm</label>
-
-
-
-                    
-                </div>
-                </Col>
-                <Col md={"6"} sm={"12"}>
-                <h4 className="text-center">Afternoon</h4>
-                <div className="btn-group w-100 h-25" role="group" aria-label="Basic checkbox toggle button group">
-                    
-                <input type="checkbox" className="btn-check" id="btncheck13" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck13">12pm-1pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck14" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck14">1pm-2pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck15" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck15">2pm-3pm</label>
-                    
-                </div>
-                <div className="btn-group w-100 h-25 my-3" role="group" aria-label="Basic checkbox toggle button group">
-                <input type="checkbox" className="btn-check" id="btncheck16" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck16">3pm-4pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck17" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck17">4pm-5pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck18" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck18">5pm-6pm</label>
-
-
-
-                    
-                </div>
-                </Col>
-                <Col md={"6"} sm={"12"}>
-                <h4 className="text-center">Evening</h4>
-                <div className="btn-group w-100 h-25" role="group" aria-label="Basic checkbox toggle button group">
-                    
-                <input type="checkbox" className="btn-check" id="btncheck19" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck19">6pm-7pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck20" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck20">7pm-8pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck21" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck21">8pm-9pm</label>
-                    
-                </div>
-                <div className="btn-group w-100 h-25 my-3" role="group" aria-label="Basic checkbox toggle button group">
-                <input type="checkbox" className="btn-check" id="btncheck22" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck22">9pm-10pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck23" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck23">10pm-11pm</label>
-
-                    <input type="checkbox" className="btn-check" id="btncheck24" autocomplete="off" value={new Date().getTime() + 1 * 60 * 60 * 1000} onClick={onClickHandle} disabled={currentTime>currentTime + 1 * 60 * 60 * 1000} />
-                    <label className="btn btn-outline-primary me-1" for="btncheck24">11pm-12am</label>
-
-
-
-                    
-                </div>
-                </Col>
+                
               </Row>
                 <Row>
                   <Col>
