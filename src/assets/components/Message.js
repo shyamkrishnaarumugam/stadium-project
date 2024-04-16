@@ -14,9 +14,9 @@ const Message = () => {
             <NavItems/>
             <div className="dark-mode">
                 
-                <img className="whatsappPic mx-5" src={require("../images/conversation.png")}/>
+                <img className="whatsappPic mx-5" src={require("../images/conversation.png")} alt="nothing"/>
                 <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-                    <button onClick={()=>buttonClicked()}  style={{backgroundColor:"black",border:"none"}}><img className="Whatpic mx-5" src={require("../images/whatsapp.png")}/></button>
+                    <button onClick={()=>buttonClicked()}  style={{backgroundColor:"black",border:"none"}}><img className="Whatpic mx-5" src={require("../images/whatsapp.png")} alt="nothing"/></button>
                     <p>Click for whatsapp</p>
                 </div>
 

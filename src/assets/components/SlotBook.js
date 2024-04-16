@@ -8,14 +8,11 @@ export default function SlotBook() {
 
     const navigate = useNavigate();
     const [isChecked,setIsChecked] = useState(0);
+    const [check, setCheck] = useState(0);
+    const [date , setDate]= useState('');
 
-    function getDate() {
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-        return `${date}/${month}/${year}`;
-      }
+    const today = new Date();
+    const currentDate = today.toISOString().split('T')[0];
       const bookTheSlot = ()=>{
        
         
@@ -27,22 +24,9 @@ export default function SlotBook() {
       else{
         alert("plase select any slot")
       }
-      }
+      };
 
-      
-
-   
-
-        const[todayDate, setTodayDate] = useState(getDate());
-
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-
-
-        // const [Amount,setAmount] = useState(0);
-        const [check, setCheck] = useState(0);
+       
 
         const onClickHandile  = (e) => {
           const storingValue =parseInt( e.target.value);
@@ -76,7 +60,7 @@ export default function SlotBook() {
               <div>
               <h4>Select the Date:-</h4>
               {/* {todayDate} */}
-              <input className="mb-4" type="date" min={todayDate} />
+              <input className="mb-4" type="date" min={currentDate} value={date} onChange={(e) => setDate(e.target.value)} />
               </div>
               
               <h4>Select the Slot:-</h4>
