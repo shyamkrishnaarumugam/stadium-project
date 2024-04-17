@@ -8,9 +8,11 @@ export default function SlotBook() {
 
     const navigate = useNavigate();
     const [isChecked,setIsChecked] = useState({});
-    const [date , setDate]= useState('');
     const [totalPrice,setTotalPrice] = useState(0);
+    const [currentDate,setCurrentDate]= useState(new Date().toISOString().split('T')[0]);
     const [currentHour,setCurrentHour]=useState(new Date().getHours())
+    const [selectedDate,setSelectedDate]=useState(currentHour);
+
 
   useEffect(()=>{
     const interval = setInterval(()=>{
@@ -19,11 +21,19 @@ export default function SlotBook() {
     return ()=>clearInterval(interval);
   },[])
 
-    const today = new Date();
-    const currentDate = today.toISOString().split('T')[0];
+    const handleDateChange =(e)=>{
+      const newDate = e.target.value;
+      setCurrentDate(new Date().toISOString().split('T')[0]);
+      setSelectedDate(newDate);
+      if(new Date(newDate).toISOString().split('T')[0]!==currentDate){
+        setCurrentHour(0);
+      }else{
+        setCurrentHour(new Date(newDate).getHours());
+      }
+    };
 
     const bookTheSlot = ()=>{
-       
+    
       window.scrollTo({left:0, top:0, behavior:"instant"});
       const selectedSlot = Object.keys(isChecked).filter((key)=>isChecked[key]);
 
@@ -47,26 +57,36 @@ export default function SlotBook() {
        
         const renderSlots = () => {
           const slots = [];
-          for (let i = currentHour; i < 24; i++) {
-            const slotValue = i;
-            const slotMeridian = i < 12 ? "AM":"PM";
-            const slotLabel = `${i} - ${i + 1} ${slotMeridian}`;
-            slots.push(
-              <div key={slotValue} className="checkbox-container">
-                <input
-                  className="checkbox-input"
-                  type="checkbox"
-                  id={`slot-${slotValue}`}
-                  checked={isChecked[slotValue]}
-                  onChange={() => onClickHandle(slotValue)}
-                  disabled={slotValue < currentHour}
-                />
-                <label className="checkbox-label" htmlFor={`slot-${slotValue}`}>
-                  {slotLabel}
-                </label>
-              </div>
-            );
+          const selectedDate = new Date();
+          const selectedDay = selectedDate.getDate();
+          const selectedMonth = selectedDate.getMonth();
+          const today = new Date();
+          const currentDay = today.getDay();
+          const currentMonth = today.getMonth();
+
+          if((selectedMonth > currentMonth)|| (selectedMonth === currentMonth && selectedDay >= currentDay)){
+            for (let i = currentHour; i < 24; i++) {
+              const slotValue = i;
+              const slotMeridian = i < 12 ? "AM":"PM";
+              const slotLabel = `${i} - ${i + 1} ${slotMeridian}`;
+              slots.push(
+                <div key={slotValue} className="checkbox-container">
+                  <input
+                    className="checkbox-input"
+                    type="checkbox"
+                    id={`slot-${slotValue}`}
+                    checked={isChecked[slotValue]}
+                    onChange={() => onClickHandle(slotValue)}
+                    disabled={slotValue < currentHour}
+                  />
+                  <label className="checkbox-label" htmlFor={`slot-${slotValue}`}>
+                    {slotLabel}
+                  </label>
+                </div>
+              );
+            }
           }
+
           return slots;
         };
         
@@ -90,7 +110,7 @@ export default function SlotBook() {
               <div>
               <h4>Select the Date:-</h4>
               
-              <input className=" date-input mb-4" type="date" min={currentDate} value={date} onChange={(e) => setDate(e.target.value)} />
+              <input className=" date-input mb-4" type="date" min={currentDate} value={selectedDate} onChange={handleDateChange} />
               </div>
               
               <h4>Select the Slot:-</h4>
@@ -102,6 +122,7 @@ export default function SlotBook() {
                 <div className="btn-group w-100 " role="group" aria-label="Basic checkbox toggle button group">
                   <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center'}}>
                   {renderSlots()}
+
                   </div>
                 </div>
                 
