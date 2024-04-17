@@ -50,7 +50,7 @@ export default function Venues() {
                 </Col>
             </Row>
         <Row>
-            <Col>
+            <Col >
                 <Card onClick={scrollToTop} className='img-ho'>
                     <CardImg variant='top' className='card-img' src={require('../images/football-1.jpeg')}></CardImg>
                     <CardBody className='bg-dark '>
