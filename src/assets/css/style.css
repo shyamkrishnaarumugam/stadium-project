@@ -137,10 +137,12 @@ color: hsl(9, 40%, 60%);
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    
   }
   
   .checkbox-input {
-    display: none; /* Hide the actual checkbox */
+    display: none; 
   }
   
   .checkbox-label {
@@ -149,9 +151,11 @@ color: hsl(9, 40%, 60%);
     width: 100px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 6px;
     cursor: pointer;
     text-align: center;
+    flex-wrap: wrap;
+    padding: 3px;
   }
   
   .checkbox-input:checked + .checkbox-label {

@@ -49,7 +49,7 @@ export default function SlotBook() {
           const slots = [];
           for (let i = currentHour; i < 24; i++) {
             const slotValue = i;
-            const slotMeridian = i < 12 ? "am":"pm";
+            const slotMeridian = i < 12 ? "AM":"PM";
             const slotLabel = `${i} - ${i + 1} ${slotMeridian}`;
             slots.push(
               <div key={slotValue} className="checkbox-container">
@@ -100,13 +100,9 @@ export default function SlotBook() {
                 <Col md={"6"} sm={"12"}>
                 <h4 className="text-center">Twilight</h4>
                 <div className="btn-group w-100 " role="group" aria-label="Basic checkbox toggle button group">
-                    
-
-                    
-                    {renderSlots()}
-
-                    
-                    
+                  <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center'}}>
+                  {renderSlots()}
+                  </div>
                 </div>
                 
                 </Col>
