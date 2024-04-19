@@ -47,52 +47,6 @@ export default function SlotBook() {
       }
       };
 
-       
-
-      const onClickHandle = (slotValue) => {
-          setIsChecked((prev)=>({...prev,[slotValue]:!prev[slotValue]}));
-          setTotalPrice((prev)=>(prev+(isChecked[slotValue] ? -600 : 600)));
-        };
-
-       
-        const renderSlots = () => {
-          const slots = [];
-          const selectedDate = new Date();
-          const selectedDay = selectedDate.getDate();
-          const selectedMonth = selectedDate.getMonth();
-          const today = new Date();
-          const currentDay = today.getDay();
-          const currentMonth = today.getMonth();
-
-          if((selectedMonth > currentMonth)|| (selectedMonth === currentMonth && selectedDay >= currentDay)){
-            for (let i = currentHour; i < 24; i++) {
-              const slotValue = i;
-              const slotMeridian = i < 12 ? "AM":"PM";
-              const slotLabel = `${i} - ${i + 1} ${slotMeridian}`;
-              slots.push(
-                <div key={slotValue} className="checkbox-container">
-                  <input
-                    className="checkbox-input"
-                    type="checkbox"
-                    id={`slot-${slotValue}`}
-                    checked={isChecked[slotValue]}
-                    onChange={() => onClickHandle(slotValue)}
-                    disabled={slotValue < currentHour}
-                  />
-                  <label className="checkbox-label" htmlFor={`slot-${slotValue}`}>
-                    {slotLabel}
-                  </label>
-                </div>
-              );
-            }
-          }
-
-          return slots;
-        };
-        
-      
-
-
 
   return (
     <>
@@ -105,9 +59,10 @@ export default function SlotBook() {
             <div className="d-flex">
             <img className="mx-auto w-50" src={require('../images/why_study_online.jpg')} alt="nothing"/>
             </div>
-              <h3>Double Double</h3>
-              <p>(Lawspet)</p>
+              <h3>Welcome to Slot Booking</h3>
+              <button>Location</button>
               <div>
+
               <h4>Select the Date:-</h4>
               
               <input className=" date-input mb-4" type="date" min={currentDate} value={selectedDate} onChange={handleDateChange} />
@@ -120,10 +75,10 @@ export default function SlotBook() {
                 <Col md={"6"} sm={"12"}>
                 <h4 className="text-center">Twilight</h4>
                 <div className="btn-group w-100 " role="group" aria-label="Basic checkbox toggle button group">
-                  <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center'}}>
-                  {renderSlots()}
+                  
+                <input type="time" id="time" style={{margin:'5px',width:'100px',height:'40px',border:'1px solid black',borderRadius:'5px'}} onChange={(e)=>{setIsChecked({...isChecked,[e.target.value]:e.target.checked})}}/>
+                <label htmlFor="time" style={{margin:'5px'}} ><button className="btn btn-outline-primary" width='100px' height='50px' padding='5px' >Book Slot</button></label>
 
-                  </div>
                 </div>
                 
                 </Col>
@@ -138,7 +93,7 @@ export default function SlotBook() {
               <Row >
                 <Col className='d-flex justify-content-center'>
 
-                <Button className='' onClick={bookTheSlot} variant='warning' size='lg'>Host a Game</Button>
+                <Button className='' onClick={bookTheSlot} variant='warning' size='lg'>Submit</Button>
                 </Col>
               </Row>
         </div>
