@@ -205,7 +205,6 @@ color: hsl(9, 40%, 60%);
 .dark-mode{
     background-color: black;
     color: white;
-    
     justify-content: center;
     align-items: center;
     
