@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,12 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(()=>{
+      if(localStorage.getItem("credentials")){
+        navigate('/home');
+      }
+    },[])
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -33,7 +39,7 @@ export default function Login() {
       
           if (response.data.status === 'success') {
             localStorage.setItem("credentials", JSON.stringify(response.data.user_details));
-            navigate("/");
+            navigate("/home");
           } else {
             setError("Incorrect username or password");
           }

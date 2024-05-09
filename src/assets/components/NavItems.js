@@ -2,13 +2,31 @@ import { faAutoprefixer } from '@fortawesome/free-brands-svg-icons'
 import { faBell, faComments, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faDice, faExclamation, faHouseChimney, faMapLocationDot, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
 
 export default function NavItems() {
     const navigate = useNavigate();
-    
+    const [logout,setLogout] = useState(false);
+    const [condition,setCondition] = useState();
+    const [value,setValue] = useState()
+    useEffect(()=>{
+      const value =!localStorage.getItem('credentials');
+        setCondition(value);
+      if(value){
+        // alert('Please login for access this content');
+
+        navigate('/');
+        
+      }
+    },[logout]);
+
+
+    const logoutHandler = (e)=>{
+        localStorage.removeItem('credentials');
+        setLogout(true);
+    }
 
     return (
       <>
@@ -39,13 +57,22 @@ export default function NavItems() {
               </NavDropdown> */}
             </Nav>
             <Nav className='nav-text'>
-              <Nav.Link onClick={()=>navigate('/')}><div className='d-flex flex-column justify-content-center text-white'><div className='mx-auto'><FontAwesomeIcon icon={faHouseChimney} /></div><div className='mx-auto'>Home</div></div></Nav.Link>
+              <Nav.Link onClick={()=>navigate('/home')}><div className='d-flex flex-column justify-content-center text-white'><div className='mx-auto'><FontAwesomeIcon icon={faHouseChimney} /></div><div className='mx-auto'>Home</div></div></Nav.Link>
               {/* <Nav.Link onClick={()=>navigate('/games')}><div className='d-flex flex-column justify-content-center'><div className='mx-auto'><FontAwesomeIcon icon={faDice} /></div><div className='mx-auto'>Games</div></div></Nav.Link> */}
               <Nav.Link onClick={()=>navigate('/venues')}><div className='d-flex flex-column justify-content-center text-white '><div className='mx-auto'><FontAwesomeIcon icon={faMapLocationDot} /></div><div className='mx-auto'>Venues</div></div></Nav.Link>
               <Nav.Link href="" onClick={()=>navigate('/message')}><div className='d-flex flex-column justify-content-center text-white'><div className='mx-auto'><FontAwesomeIcon icon={faComments} /></div><div className='mx-auto'>Messages</div></div></Nav.Link>
-              <Nav.Link href="" ><div className='d-flex flex-column justify-content-center text-white '><div className='mx-auto'><FontAwesomeIcon icon={faBell} /></div><div className='mx-auto'>Alerts</div></div></Nav.Link>
+              <Nav.Link onClick={()=>navigate('/alerts')}><div className='d-flex flex-column justify-content-center text-white '><div className='mx-auto'><FontAwesomeIcon icon={faBell} /></div><div className='mx-auto'>Alerts</div></div></Nav.Link>
               <Nav.Link onClick={()=>navigate('/about')}><div className='d-flex flex-column justify-content-center text-white '><div className='mx-auto'><FontAwesomeIcon icon={faAutoprefixer} /></div><div className='mx-auto'>About Us</div></div></Nav.Link>
-              <Nav.Link onClick={()=>navigate('/login')}><div className='d-flex flex-column justify-content-center  text-white'><div className='mx-auto'><FontAwesomeIcon icon={faUserAlt}  className='user-icon mx-auto'/></div><div className='mx-auto'>User</div></div></Nav.Link>
+              <Nav.Link><div className='dropdown-user d-flex flex-column justify-content-center  text-white'><div className='mx-auto'><FontAwesomeIcon icon={faUserAlt}  className='user-icon mx-auto'/></div>
+              <div className='dropdown-user'>
+              <div className='mx-auto dropbtn'>User</div>
+              <div class="dropdown-content-user">
+                
+                <a onClick={logoutHandler} >Logout</a>
+              
+                 
+              </div></div>
+              </div></Nav.Link>
             </Nav>
   
           </Navbar.Collapse>

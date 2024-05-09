@@ -113,12 +113,15 @@ color: hsl(9, 40%, 60%);
         padding: 10px;
 }
 .card-img{
+    max-width: 100%;
+    
     transition:0.1s ease-in;
         &:hover{
-            transform:scale(1.1);
+            transform:scale(1.04);
         }
 }
 .img-ho{
+    
     overflow:hidden;
     
 }  
@@ -205,8 +208,7 @@ color: hsl(9, 40%, 60%);
 .dark-mode{
     background-color: black;
     color: white;
-    justify-content: center;
-    align-items: center;
+
     
 }
 .dark-mode-text{
@@ -309,3 +311,45 @@ hr{
     }
 
 }
+
+/* dropdown in user nav */
+/* .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  } */
+  
+  .dropdown-user {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content-user {
+    display: none;
+    position: absolute;
+    background-color: #6b6b6b;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content-user a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content-user a:hover {background-color: #2d2d2d;}
+  
+  .dropdown-user:hover .dropdown-content-user {display: block;}
+  
+  /* .dropdown-user:hover .dropbtn {background-color: #3e8e41;} */
+
+  /* dropdown end */
+
+  .game-img{
+    max-width: 100%;
+  }

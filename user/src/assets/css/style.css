@@ -1,0 +1,355 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+.mainLoginInput{
+  /* height: 40px; */
+  padding: 0px;
+  font-size: 30px;
+  margin: 0;
+}
+
+.background{
+    background-color: #1f1209;
+    color: white;
+    background-size: cover;
+    
+}
+
+.mainLoginInput::-webkit-input-placeholder { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: hsl(9, 40%, 60%);
+}
+
+.mainLoginInput::-moz-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: hsl(9, 40%, 60%);
+}
+
+.mainLoginInput:-ms-input-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: hsl(9, 40%, 60%);
+}
+
+
+.texttt{
+    color: red;
+}
+.login-card-center{
+    margin-top: 10%;
+    padding-top: 100px;
+    /* padding-bottom: 100px; */
+
+    
+}
+.hello{
+    color: red;
+}
+.spacer{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/* .user-icon{
+    color: darkblue;
+} */
+
+.footer-bg{
+    background-image: url("../images/footer.jpg");
+    color: white;
+    background-size: cover;
+    
+}
+.login-bg{
+    background-image: url("../images/3607424.jpg");
+    background-size: cover;
+}
+.footer-bg1{
+     
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(255, 255, 255, 0));
+}
+.signup-bg{
+    background-image: url("../images/signup\ bg.jpg");
+    background-size: cover;
+}
+.footer-bg a {
+    color: white;
+    text-decoration: none;
+    display: inline;
+    text-align: center;
+    margin: 10px;
+}
+.footer-bg a:hover{
+    color: yellow;
+}
+
+.carousel-size{
+    width: 40%;
+    height: auto;
+}
+/* .logo{
+    margin-right: -10rem;
+} */
+
+.booking_button{
+        color: white;
+        text-decoration: none;
+        background-color: green;
+        padding: 10px;
+}
+.card-img{
+    max-width: 100%;
+    
+    transition:0.1s ease-in;
+        &:hover{
+            transform:scale(1.04);
+        }
+}
+.img-ho{
+    
+    overflow:hidden;
+    
+}  
+.payment-card{
+    
+    height: 50%;
+}
+.pay-background{
+    background-image: url(../images/background.jpeg);
+    background-size: cover;
+    /* filter: blur(6px); */
+    position: relative;
+    
+}
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+  }
+  
+  .checkbox-input {
+    display: none; 
+  }
+  
+  .checkbox-label {
+    margin-left: 8px;
+    height: 30px;
+    width: 100px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    flex-wrap: wrap;
+    padding: 3px;
+  }
+  
+  .checkbox-input:checked + .checkbox-label {
+    background-color: green; /* Change background color when checkbox is checked */
+  }
+  
+  .checkbox-input:not(:checked) + .checkbox-label {
+    background-color: red; /* Change background color when checkbox is unchecked */
+  }
+  
+  .date-input {
+    padding: 8px;
+    border: 3px solid #e25c5c;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .date-input:focus {
+    border-color: #007bff; /* Change border color when input is focused */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Add a subtle shadow when input is focused */
+  }
+  
+
+
+.whatsappPic{
+    height: 300px;
+    width:300px;
+    
+
+}
+.Whatpic{
+    height:100px;
+    width:100px;
+    border-radius: 50%; 
+}
+.Whatpic:hover{
+   border: 3px solid rgb(255, 255, 255);
+}
+
+
+.login-page{
+    background-color: white;
+    color: #00000000;
+}
+.dark-mode{
+    background-color: black;
+    color: white;
+
+    
+}
+.dark-mode-text{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+.pay-card{
+    color: rgb(198, 0, 0);
+    z-index: 2;
+    top: 0;
+    position: absolute;
+}
+@media only screen and (max-width: 600px) {
+    .logoimg {
+      display: inline;
+    }
+  }
+  
+  @media only screen and (max-width: 413px) {
+    .logoimg {
+      margin-right: -6rem;
+    }
+  }
+  
+  
+.payment-image{
+    max-width: min-content;
+}
+.transprent-background{
+    background-color: #00000000;
+}
+.fit-contain{
+    object-fit: cover;
+}
+.heading-home{
+    font-size: 60px;
+}
+.heading-home-one{
+    font-size: 44px;    
+}
+.book-button:hover{
+    background-image: linear-gradient(rgb(5, 203, 45), yellow);
+}
+.subhead-home{
+    font-size: 30px;
+    margin: 20px 0 20px 0;
+}
+.spacer-home{
+    padding: 100px 0px;
+}
+.spacer-home1{
+    padding: 50px 0px;
+}
+.spacer-about{
+    padding: 100px 0px;
+}
+.navbar-light .navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.764);
+}
+.nav-background{
+    background-image: linear-gradient(to right,black,rgba(128, 128, 128, 0.592),black);
+    
+}
+hr{
+    color: black;
+    border:none;
+    height: 20px;
+ 	width: 90%;
+	height: 50px;
+	margin-top: 0;
+	border-bottom: 1px solid #1f1209;
+	box-shadow: 0 20px 20px -20px #333;
+  margin: -50px auto 10px;
+}
+.discover-para{
+    color: rgb(164, 164, 164);
+}
+.home-card{
+    background-color: rgba(82, 82, 82, 0.425);
+    border-radius: 25px;
+    padding: 50px;
+}
+.tablecell{
+    display: table-cell;
+}
+.about-img{
+   
+
+    img{
+        display: block;
+    }
+}
+.about-para{
+    p{
+        line-height: 1.7;
+        word-spacing: 3px;
+        text-indent: 50px;
+        font-size: 20px;
+    }
+
+}
+
+/* dropdown in user nav */
+/* .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  } */
+  
+  .dropdown-user {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content-user {
+    display: none;
+    position: absolute;
+    background-color: #6b6b6b;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content-user a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content-user a:hover {background-color: #2d2d2d;}
+  
+  .dropdown-user:hover .dropdown-content-user {display: block;}
+  
+  /* .dropdown-user:hover .dropbtn {background-color: #3e8e41;} */
+
+  /* dropdown end */
+
+  .game-img{
+    max-width: 100%;
+  }

@@ -1,17 +1,84 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavItems from './NavItems'
 import { Card, CardBody, CardImg, CardText, Col, Container, Form, Row } from 'react-bootstrap'
 import Footer from './Footer'
 import { useNavigate } from 'react-router'
-
+import axios from 'axios'
 export default function Venues() {
 
     const navigate = useNavigate();
     const [search,setSearch] = useState();
-    const scrollToTop = () => {
+    const [getDataCricket,setGetDataCricket]=useState([]);
+    const [getDataFootball, setGetDataFootball]=useState([]);
+    const [getDataBadminton,setGetDataBadminton]=useState([]);
+    const[cricketData,setCricketData] = useState([]);
+    const [datas,setDatas] = useState({
+        index:'',
+        game:''
+    });
+    const goToCricket = (id) => {
         window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-        navigate('/game');
+        // setDatas({index:id,game:"karthik"});
+        
+        navigate('/game', { state: { index: id, game: "cricket" } });
       }
+
+      const goToFootball = (id) => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        navigate('/game', { state: { index: id, game: "football" } });
+
+      }
+      const goToBadminton = (id) => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        navigate('/game', { state: { index: id, game: "badminton" } });
+
+      }
+
+
+      const getCricket=async()=>{
+        try {
+            const response = await axios.get(`http://localhost/stadium-backend/getCricket.php`);
+            const convert = await response.data;
+            if(Array.isArray(convert)){
+                setGetDataCricket(convert);
+            }
+            
+
+        } catch (error) {
+            console.error(error);
+        }    
+    };
+    const getFootball=async()=>{
+        try {
+            const response = await axios.get(`http://localhost/stadium-backend/getFootball.php`);
+            const convert = await response.data;
+            if(Array.isArray(convert)){
+                setGetDataFootball(convert);
+            }
+            
+  
+        } catch (error) {
+            console.error(error);
+        }    
+    };
+    const getBadminton=async()=>{
+        try {
+            const response = await axios.get(`http://localhost/stadium-backend/getBadminton.php`);
+            const convert = await response.data;
+            if(Array.isArray(convert)){
+                setGetDataBadminton(convert);
+            }
+            
+  
+        } catch (error) {
+            console.error(error);
+        }    
+    };
+    useEffect(()=>{
+        getCricket();
+        getFootball();
+        getBadminton();
+    }, []);
 
   return (
     <>
@@ -44,44 +111,22 @@ export default function Venues() {
              <Row className=''>
             <Col>
                 <div className='d-inline'>
-                <h3 className='d-inline-block '>Football Venues</h3>
-                <a href='' className='float-end clearfix'>See all</a>
+                <h3 className='d-inline-block '>Cricket Venues</h3>
+                {/* <a href='' className='float-end clearfix'>See all</a> */}
                 </div>
                 </Col>
             </Row>
         <Row>
-            <Col >
-                <Card onClick={scrollToTop} className='img-ho'>
-                    <CardImg variant='top' className='card-img' src={require('../images/football-1.jpeg')}></CardImg>
+            {getDataCricket.map((value,index)=>(
+            <Col md={3} key={index}>
+                <Card onClick={()=>{goToCricket(value.id)}} className='img-ho h-100'>
+                    <CardImg variant='top' className='card-img' src={`http://localhost/stadium-backend/${value.image}`}></CardImg>
                     <CardBody className='bg-dark '>
-                        <CardText >Double Double</CardText>
+                        <CardText >{value.name} <span className='float-end clearfix text-warning'>Rs. {value.amount}</span></CardText>
                     </CardBody>
                 </Card>
             </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top'  className='card-img' src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top'  className='card-img' src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
+        ))}
         </Row>
     </Container>
     </div>
@@ -90,44 +135,22 @@ export default function Venues() {
         <Row className=''>
            <Col>
             <div className='d-inline'>
-            <h3 className='d-inline-block'>Criket Venues</h3>
-            <a href='' className='float-end clearfix'>See all</a>
+            <h3 className='d-inline-block'>Football Venues</h3>
+            {/* <a href='' className='float-end clearfix'>See all</a> */}
             </div>
             </Col>
         </Row>
         <Row>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top'  className='card-img' src={require('../images/football-1.jpeg')}></CardImg>
+            {getDataFootball.map((value,index)=>(
+            <Col md={3} key={index}>
+                <Card onClick={()=>goToFootball(value.id)} className='img-ho h-100'>
+                    <CardImg variant='top' className='card-img' src={`http://localhost/stadium-backend/${value.image}`}></CardImg>
                     <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
+                        <CardText >{value.name} <span className='float-end clearfix text-warning'>Rs. {value.amount}</span></CardText>
                     </CardBody>
                 </Card>
             </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
+))}
         </Row>
     </Container>
     </div>
@@ -137,43 +160,21 @@ export default function Venues() {
            <Col>
             <div className='d-inline'>
             <h3 className='d-inline-block'>Batminton Venues</h3>
-            <a href='' className='float-end clearfix'>See all</a>
+            {/* <a href='' className='float-end clearfix'>See all</a> */}
             </div>
             </Col>
         </Row>
         <Row>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
+            {getDataBadminton.map((value,index)=>(
+            <Col md={3} key={index}>
+                <Card onClick={()=>goToBadminton(value.id)} className='img-ho h-100'>
+                    <CardImg variant='top' className='card-img ' src={`http://localhost/stadium-backend/${value.image}`}></CardImg>
                     <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
+                        <CardText >{value.name} <span className='float-end clearfix text-warning'>Rs. {value.amount}</span></CardText>
                     </CardBody>
                 </Card>
             </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col>
-                <Card className='img-ho'>
-                    <CardImg variant='top' className='card-img'  src={require('../images/football-1.jpeg')}></CardImg>
-                    <CardBody className='bg-dark '>
-                        <CardText>Double Double</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
+        ))}
         </Row>
     </Container>
     </div>

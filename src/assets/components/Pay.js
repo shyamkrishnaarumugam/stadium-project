@@ -10,16 +10,17 @@ export default function Pay() {
   return (
     <>
       <NavItems />
-      <div className='pay-background'>
+      <div className='pay-background '>
       <Container>
-        <Row className='vh-100'>
-          <Col className='d-flex  '>
-            <Card className=' mx-auto pay-card'>
-              <div className='my-auto '>
-                
-                <h1 className='mx-5 text-success'>Payment request send Successfully!</h1>
+        <Row className=''>
+          <Col className=''>
+           
+              <div className='d-flex vh-100'>
+                <div className='my-auto mx-auto w-'>
+                <h1 className=' text-danger  p-4'>Booking status send Successfully!</h1>
+                </div>
               </div>
-            </Card>
+           
           </Col>
         </Row>
       </Container>

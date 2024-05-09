@@ -15,14 +15,15 @@ import Pay from './assets/components/Pay';
 import PayNow from './assets/components/PayNow';
 import About from './assets/components/About';
 import Message from './assets/components/Message';
+import Alerts from './assets/components/Alerts';
 
 function App() {
   return (
     <>
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/login' element={<Login />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/' element={<Login />} />
       <Route path='/signUp' element={<SignUp />} />
       <Route path='/Navbar' element={<NavItems />} />
       <Route path='/venues' element={<Venues />} />
@@ -33,6 +34,7 @@ function App() {
       <Route path='/paynow' element={<PayNow />} />
       <Route path='/about' element={<About />} />
       <Route path ='/message' element={<Message />} />
+      <Route path='/alerts' element={<Alerts />} />
     </Routes>
     </BrowserRouter>
     </>

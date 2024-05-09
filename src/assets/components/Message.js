@@ -12,9 +12,9 @@ const Message = () => {
         <div>
            
             <NavItems/>
-            <div className="dark-mode">
+            <div className="dark-mode spacer">
                 
-                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+                <div className="spacer" style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
                 <img className="whatsappPic mx-5" src={require("../images/conversation.png")} alt="nothing"/>
                 <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
                     <button onClick={()=>buttonClicked()}  style={{backgroundColor:"black",border:"none"}}><img className="Whatpic mx-5" src={require("../images/whatsapp.png")} alt="nothing"/></button>

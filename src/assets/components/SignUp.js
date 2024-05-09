@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router';
 export default function SignUp() {
     const navigate = useNavigate();
 
-    const signUpAlert = async () => {
-        
+    const signUpAlert = async (e) => {
+        e.preventDefault();
         try {
             const formData = new FormData();
             formData.append('username', username);
@@ -26,6 +26,7 @@ export default function SignUp() {
         } catch (error) {
             console.error(error);
         }
+        navigate('/');
     };
 
     const [username, setUsername] = useState('');
@@ -61,7 +62,7 @@ export default function SignUp() {
                                     <Form.Control value={password} type="password" className=' text-light' style={{backgroundColor:'black'}}  onChange={(e) => setPassword(e.target.value)} />
                                 </FloatingLabel>
                                 <Button variant='success' type='submit' className='mt-4' onClick={signUpAlert}>Sign Up</Button><br />
-                                <a href='' onClick={() => navigate('/login')}>Already have an account? Log In</a>
+                                <a href='' onClick={() => navigate('/')}>Already have an account? Log In</a>
                             </Form>
                         </Col>
                     </Row>

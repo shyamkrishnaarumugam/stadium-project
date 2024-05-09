@@ -5,6 +5,7 @@ import {
   CardBody,
   CardImg,
   CardText,
+  Carousel,
   Col,
   Container,
   FloatingLabel,
@@ -74,12 +75,20 @@ export default function Home() {
               </Col>
               <Col md={6} sm={12}>
                 <div className="">
-                  <img
-                    src={require("../images/game1.jpg")}
-                    // src={require("../images/puzle ball-1.png")}
-
-                    className="w-100"
-                  />
+                <Carousel>
+                  <Carousel.Item interval={1000}>
+                    <img src={require("../images/game1.jpg")} className="w-100" />
+                    
+                  </Carousel.Item>
+                  <Carousel.Item interval={1000}>
+                  <img src={require("../images/game3.jpg")} className="w-100" />
+                    
+                  </Carousel.Item>
+                  <Carousel.Item  interval={1000}>
+                  <img src={require("../images/game2.jpg")} className="w-100" />
+                    
+                  </Carousel.Item>
+                </Carousel>
                 </div>
               </Col>
             </Row>
